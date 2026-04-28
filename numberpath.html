@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number Path - Checkpoint Pen Mode</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="gamezone.css">
+</head>
+
+<body>
+    <a href="index.html#pick-your-game" class="game-zone-wrap">
+        <div class="game-zone-inner">⚡ Game Zone1</div>
+    </a>
+    <div class="app">
+        <!-- <button class="game-zone" id="gamezone"> ⚡ Game Zone </button> -->
+        <!-- <button id="gamezone" class="game-zone" onclick="location.href='index.html#pick-your-game'">
+            ⚡ Game Zone
+        </button> -->
+        <header class="topbar">
+            <div class="title-box">
+                <h1>Number Path</h1>
+                <p>Draw toward the target. You may stop midway and continue from where you left off.</p>
+            </div>
+        </header>
+
+        <section class="panel info-panel">
+            <div class="info-card">
+                <span class="label">Mode</span>
+                <select id="modeSelect">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                    <option value="expert">Very Hard</option>
+                </select>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Current</span>
+                <span id="currentNode">-</span>
+            </div>
+
+            <div class="info-card highlight">
+                <span class="label">Next Target</span>
+                <span id="nextTarget">-</span>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Moves</span>
+                <span id="moveCount">0</span>
+            </div>
+        </section>
+
+        <section class="panel message-panel">
+            <div id="messageBox">Start from the blue point and draw toward the yellow target.</div>
+        </section>
+
+
+
+        <section class="panel timer-panel">
+            <div class="timer-top">
+                <span class="timer-label">Time Left</span>
+                <span id="timerText">02:00</span>
+            </div>
+            <div class="timer-bar-wrap">
+                <div id="timerBar"></div>
+            </div>
+        </section>
+
+        <section class="game-shell">
+            <canvas id="gameCanvas" width="420" height="620"></canvas>
+        </section>
+
+        <section class="panel controls">
+            <button id="restartBtn">Restart</button>
+            <button id="undoBtn">Undo</button>
+            <button id="hintBtn">Hint</button>
+            <button id="newBoardBtn">New Board</button>
+        </section>
+
+        <section class="panel legend">
+            <div><span class="dot current-dot"></span> Current number</div>
+            <div><span class="dot target-dot"></span> Target number</div>
+            <div><span class="dot normal-dot"></span> Other number</div>
+        </section>
+    </div>
+
+    <script src="script6.js"></script>
+</body>
+
+</html>

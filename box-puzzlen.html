@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sliding IQ Puzzle</title>
+    <link rel="stylesheet" href="stylebx.css" />
+    <link rel="stylesheet" href="gamezone.css">
+</head>
+
+<body>
+    <a href="index.html#pick-your-game" class="game-zone-wrap">
+        <div class="game-zone-inner">⚡ Game Zone1</div>
+    </a>
+    <div class="game-shell">
+        <header class="top-banner">
+            <h1>Block Puzzle - Brain Tester</h1>
+            <p class="subtitle">Slide the tiles into the correct order</p>
+        </header>
+
+        <main class="game-area">
+            <section class="score-panel">
+                <div class="iq-box">
+                    <span class="iq-label">IQ</span>
+                    <span class="iq-value" id="iqValue">56</span>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <span class="label">Moves</span>
+                        <span id="moveCount">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Time</span>
+                        <span id="timer">00:00</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="shuffleBtn">Shuffle</button>
+                    <button id="resetBtn">Reset</button>
+                </div>
+            </section>
+
+            <section class="board-wrap">
+                <div class="board" id="board"></div>
+            </section>
+
+            <section class="message-panel">
+                <p id="message">Tap a tile next to the empty space to move it.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="scriptbx.js"></script>
+</body>
+
+</html>

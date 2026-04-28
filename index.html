@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>🎮 Game Zone</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Trebuchet MS", "Comic Sans MS", sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(255, 241, 118, 0.8), transparent 25%),
+                radial-gradient(circle at 90% 20%, rgba(255, 111, 183, 0.65), transparent 25%),
+                radial-gradient(circle at 50% 90%, rgba(0, 242, 254, 0.75), transparent 35%),
+                linear-gradient(135deg, #ffe0f3, #6bb8db, #0a6d82);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle, rgba(255, 255, 255, .75) 1px, transparent 1px),
+                radial-gradient(circle, rgba(0, 242, 254, .45) 1px, transparent 1px);
+            background-size: 42px 42px, 70px 70px;
+            animation: bgSparkle 18s linear infinite;
+            opacity: .55;
+            z-index: 0;
+        }
+
+        @keyframes bgSparkle {
+            from {
+                background-position: 0 0, 0 0;
+            }
+
+            to {
+                background-position: 240px 300px, -260px 220px;
+            }
+        }
+
+        .app {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1220px;
+            margin: 0 auto;
+            background: rgba(108, 179, 223, 0.9);
+            border-radius: 30px;
+            padding: 24px;
+            box-shadow:
+                0 22px 55px rgba(0, 0, 0, 0.22),
+                inset 0 0 35px rgba(255, 255, 255, .25);
+            border: 6px solid rgba(255, 255, 255, 0.9);
+            overflow: hidden;
+        }
+
+        .app::before {
+            content: "";
+            position: absolute;
+            inset: -120px;
+            background: conic-gradient(from 0deg,
+                    transparent,
+                    rgba(255, 255, 255, .22),
+                    transparent,
+                    rgba(0, 242, 254, .22),
+                    transparent);
+            animation: appGlowSpin 12s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes appGlowSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* .bot-hero {
+            position: relative;
+            min-height: 420px;
+            margin-bottom: 26px;
+            border-radius: 28px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 44%, rgba(113, 50, 216, 0.34), transparent 34%),
+                radial-gradient(circle at 75% 55%, rgba(255, 79, 135, 0.28), transparent 30%),
+                linear-gradient(135deg, #030712, #081827 48%, #eedc66);
+            border: 4px solid rgba(255, 255, 255, 0.85);
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.35),
+                inset 0 0 45px rgba(0, 242, 254, 0.16);
+        } */
+
+
+        /* .bot-hero {
+            position: relative;
+            min-height: 420px;
+            margin-bottom: 26px;
+            border-radius: 28px;
+            overflow: hidden;
+            background:
+                linear-gradient(rgba(3, 7, 18, 0.72), rgba(3, 7, 18, 0.78)),
+                url("images/IMG_0612.jpeg"),
+                radial-gradient(circle at 50% 44%, rgba(0, 242, 254, 0.34), transparent 34%),
+                radial-gradient(circle at 75% 55%, rgba(255, 79, 135, 0.28), transparent 30%),
+                linear-gradient(135deg, #030712, #081827 48%, #1d0811);
+            background-size: cover, cover, auto, auto, auto;
+            background-position: center, center, center, center, center;
+            border: 4px solid rgba(255, 255, 255, 0.85);
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.35),
+                inset 0 0 45px rgba(0, 242, 254, 0.16);
+        } */
+
+
+        .bot-hero {
+            position: relative;
+            min-height: 420px;
+            margin-bottom: 26px;
+            border-radius: 28px;
+            overflow: hidden;
+
+            background:
+                linear-gradient(rgba(3, 7, 18, 0.65), rgba(3, 7, 18, 0.7)),
+                url("images/IMG_0612.jpeg");
+
+            background-size: 90% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            background-color: #030712;
+            /* fills empty space */
+        }
+
+
+
+
+        */ .bot-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.18), transparent),
+                repeating-linear-gradient(0deg,
+                    transparent 0px,
+                    transparent 24px,
+                    rgba(255, 255, 255, 0.04) 25px);
+            animation: scanMove 3.8s linear infinite;
+        }
+
+        @keyframes scanMove {
+            from {
+                transform: translateX(-45%);
+            }
+
+            to {
+                transform: translateX(45%);
+            }
+        }
+
+        .tech-lines {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, #00f2fe, transparent 25%, transparent 75%, #ff4b2b),
+                linear-gradient(180deg, transparent 92%, rgba(255, 255, 255, .3));
+            opacity: .7;
+        }
+
+        .bot-text {
+            position: absolute;
+            top: 24px;
+            width: 100%;
+            text-align: center;
+            z-index: 20;
+            padding: 0 14px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 3.15rem;
+            margin: 0 0 10px;
+            font-weight: 900;
+            letter-spacing: 7px;
+            background: linear-gradient(90deg, #ff2f92, #fff176, #00f2fe, #7f5cff, #ff2f92);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: titleGradient 4s linear infinite, titleBounce 2.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, .9));
+        }
+
+        @keyframes titleGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 300% 50%;
+            }
+        }
+
+        @keyframes titleBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-5px) scale(1.03);
+            }
+        }
+
+        .subtitle {
+            text-align: center;
+            margin: 0;
+            color: #ffffff;
+            font-size: 1.08rem;
+            font-weight: 900;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
+            animation: softGlowText 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes softGlowText {
+            from {
+                text-shadow: 0 0 8px rgba(255, 255, 255, .55), 1px 1px 3px rgba(0, 0, 0, .25);
+            }
+
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 28px rgba(0, 242, 254, .75);
+            }
+        }
+
+        .hero-badges {
+            position: absolute;
+            left: 50%;
+            top: 95px;
+            transform: translateX(-50%);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            z-index: 22;
+            width: 90%;
+        }
+
+        .hero-badge {
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 900;
+            color: #dffaff;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(69, 247, 255, .5);
+            box-shadow: 0 0 18px rgba(0, 242, 254, .22);
+            backdrop-filter: blur(8px);
+            font-size: .85rem;
+        }
+
+        .bot-scene {
+            position: absolute;
+            inset: 135px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 900px;
+        }
+
+        .bot {
+            position: relative;
+            width: 175px;
+            height: 225px;
+            animation: botFloat 3s ease-in-out infinite;
+            transform-style: preserve-3d;
+            z-index: 5;
+        }
+
+        @keyframes botFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateY(-8deg);
+            }
+
+            50% {
+                transform: translateY(-16px) rotateY(8deg);
+            }
+        }
+
+        .bot-head {
+            position: relative;
+            width: 150px;
+            height: 115px;
+            margin: 0 auto;
+            border-radius: 46% 46% 42% 42%;
+            background:
+                radial-gradient(circle at 35% 25%, #ffffff, #dff9ff 42%, #a6c8d9 100%);
+            box-shadow:
+                inset -10px -12px 20px rgba(0, 0, 0, 0.16),
+                0 0 30px rgba(0, 242, 254, 0.45);
+        }
+
+        .bot-face {
+            position: absolute;
+            left: 22px;
+            right: 22px;
+            top: 36px;
+            height: 42px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, #03131f, #06293a);
+            box-shadow:
+                inset 0 0 14px rgba(0, 242, 254, 0.5),
+                0 0 18px rgba(0, 242, 254, 0.45);
+        }
+
+        .eye {
+            position: absolute;
+            top: 15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #45f7ff;
+            box-shadow: 0 0 14px #45f7ff;
+            animation: blink 3s infinite;
+        }
+
+        .left-eye {
+            left: 30px;
+        }
+
+        .right-eye {
+            right: 30px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            92%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            95% {
+                transform: scaleY(0.15);
+            }
+        }
+
+        .ear {
+            position: absolute;
+            top: 45px;
+            width: 18px;
+            height: 42px;
+            border-radius: 999px;
+            background: linear-gradient(#ff7b31, #ff3d1f);
+            box-shadow: 0 0 16px rgba(255, 90, 40, .8);
+        }
+
+        .left-ear {
+            left: -10px;
+        }
+
+        .right-ear {
+            right: -10px;
+        }
+
+        .bot-body {
+            position: relative;
+            width: 108px;
+            height: 92px;
+            margin: 10px auto 0;
+            border-radius: 35px 35px 42px 42px;
+            background:
+                radial-gradient(circle at 45% 20%, #ffffff, #d8f8ff 45%, #8ab6c8 100%);
+            box-shadow:
+                inset -8px -10px 16px rgba(0, 0, 0, 0.13),
+                0 0 24px rgba(0, 242, 254, 0.35);
+        }
+
+        .bot-body::before,
+        .bot-body::after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            width: 46px;
+            height: 12px;
+            border-radius: 999px;
+            background: #dffaff;
+            box-shadow: 0 0 12px rgba(0, 242, 254, .5);
+        }
+
+        .bot-body::before {
+            left: -36px;
+            transform: rotate(-35deg);
+        }
+
+        .bot-body::after {
+            right: -36px;
+            transform: rotate(35deg);
+        }
+
+        .bot-glow {
+            position: absolute;
+            left: 50%;
+            bottom: 14px;
+            width: 38px;
+            height: 12px;
+            transform: translateX(-50%);
+            border-radius: 999px;
+            background: #ff7b31;
+            box-shadow: 0 0 18px #ff7b31;
+        }
+
+        .holo-screen {
+            position: absolute;
+            width: 150px;
+            height: 92px;
+            border: 2px solid rgba(69, 247, 255, 0.8);
+            border-radius: 16px;
+            background: rgba(0, 242, 254, 0.08);
+            box-shadow:
+                inset 0 0 18px rgba(0, 242, 254, 0.25),
+                0 0 24px rgba(0, 242, 254, 0.45);
+            backdrop-filter: blur(4px);
+            animation: holoFloat 3.4s ease-in-out infinite;
+        }
+
+        .screen-one {
+            left: 15%;
+            top: 74px;
+        }
+
+        .screen-two {
+            right: 14%;
+            top: 56px;
+            animation-delay: .5s;
+        }
+
+        @keyframes holoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateY(18deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotateY(-8deg);
+            }
+        }
+
+        .holo-screen span {
+            display: block;
+            height: 8px;
+            margin: 13px;
+            border-radius: 999px;
+            background: rgba(69, 247, 255, 0.65);
+            box-shadow: 0 0 10px rgba(69, 247, 255, 0.8);
+        }
+
+        .mini-map {
+            width: 72px;
+            height: 52px;
+            margin: 18px auto;
+            border-radius: 45% 55% 40% 60%;
+            background: rgba(69, 247, 255, 0.65);
+            box-shadow: 0 0 18px rgba(69, 247, 255, 0.9);
+            animation: mapPulse 1.6s ease-in-out infinite alternate;
+        }
+
+        @keyframes mapPulse {
+            from {
+                transform: scale(.92);
+                opacity: .65;
+            }
+
+            to {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        /* .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: -4px 0 26px;
+        }
+
+        .stat-card {
+            padding: 14px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 900;
+            color: #ffffff;
+            background: rgba(255, 255, 255, .18);
+            border: 2px solid rgba(255, 255, 255, .55);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, .12);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 1.6rem;
+            color: #fff176;
+            text-shadow: 0 0 14px rgba(255, 255, 255, .7);
+        } */
+
+        .game-home {
+            margin: 10px auto 28px;
+            padding: 24px;
+            border-radius: 28px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, .82), rgba(255, 241, 252, .78)),
+                radial-gradient(circle at top left, #fff176, transparent 35%),
+                radial-gradient(circle at bottom right, #7afcff, transparent 35%);
+            border: 4px solid rgba(255, 255, 255, .95);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .14);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-home::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: rgba(255, 79, 135, 0.22);
+            border-radius: 50%;
+            top: -80px;
+            left: -70px;
+            animation: bubbleMove 6s ease-in-out infinite alternate;
+        }
+
+        .game-home::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            background: rgba(100, 72, 255, 0.18);
+            border-radius: 50%;
+            bottom: -110px;
+            right: -90px;
+            animation: bubbleMove 7s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes bubbleMove {
+            from {
+                transform: translateY(0) scale(1);
+            }
+
+            to {
+                transform: translateY(18px) scale(1.08);
+            }
+        }
+
+        .game-home-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-home h2,
+        .panel h2 {
+            margin: 0;
+            font-size: 2rem;
+            color: #6448ff;
+            text-shadow: 2px 2px 0 #fff;
+            animation: headingPulse 2s ease-in-out infinite;
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        @keyframes headingPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 4px rgba(255, 255, 255, .8));
+            }
+
+            50% {
+                transform: scale(1.04);
+                filter: drop-shadow(0 0 14px rgba(255, 79, 135, .8));
+            }
+        }
+
+        .game-home p {
+            margin: 8px 0 20px;
+            font-weight: 900;
+            color: #6b3f72;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 14px;
+        }
+
+        .game-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 112px;
+            border-radius: 24px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 2.15rem;
+            font-weight: 900;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            box-shadow:
+                0 12px 22px rgba(0, 0, 0, .16),
+                0 0 18px rgba(255, 255, 255, .65);
+            animation: floatCard 3s ease-in-out infinite, glowCard 2.2s ease-in-out infinite alternate;
+            transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+            isolation: isolate;
+        }
+
+        .game-card::after {
+            content: "";
+            position: absolute;
+            inset: -5px;
+            border-radius: 28px;
+            background: conic-gradient(from 0deg,
+                    #ff2f92,
+                    #fff176,
+                    #00f2fe,
+                    #7f5cff,
+                    #00ff99,
+                    #ff9f1c,
+                    #ff2f92);
+            z-index: -2;
+            animation: spinBorder 2.8s linear infinite;
+        }
+
+        .game-card::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border-radius: 20px;
+            background: inherit;
+            z-index: -1;
+        }
+
+        .game-card span {
+            font-size: .86rem;
+            line-height: 1.1;
+            margin-top: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, .22);
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.06) rotate(-1deg);
+            box-shadow:
+                0 18px 34px rgba(0, 0, 0, .22),
+                0 0 28px rgba(255, 255, 255, .95),
+                0 0 38px rgba(255, 79, 135, .55);
+            filter: saturate(1.18);
+        }
+
+        .game-grid:hover .game-card:not(:hover) {
+            opacity: .72;
+            transform: scale(.96);
+        }
+
+        @keyframes spinBorder {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes glowCard {
+            from {
+                box-shadow:
+                    0 12px 22px rgba(0, 0, 0, .16),
+                    0 0 12px rgba(255, 255, 255, .45);
+            }
+
+            to {
+                box-shadow:
+                    0 16px 28px rgba(0, 0, 0, .22),
+                    0 0 24px rgba(255, 255, 255, .95),
+                    0 0 34px rgba(0, 242, 254, .55);
+            }
+        }
+
+        .game-card:nth-child(1) {
+            background: linear-gradient(135deg, #ff5fa2, #ff9f1c);
+        }
+
+        .game-card:nth-child(2) {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            animation-delay: .15s;
+        }
+
+        .game-card:nth-child(3) {
+            background: linear-gradient(135deg, #7f5cff, #f15bb5);
+            animation-delay: .3s;
+        }
+
+        .game-card:nth-child(4) {
+            background: linear-gradient(135deg, #00c853, #b2ff59);
+            animation-delay: .45s;
+        }
+
+        .game-card:nth-child(5) {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            animation-delay: .6s;
+        }
+
+        .game-card:nth-child(6) {
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            animation-delay: .75s;
+        }
+
+        .game-card:nth-child(7) {
+            background: linear-gradient(135deg, #1e90ff, #8a2be2);
+            animation-delay: .9s;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 390px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .panel {
+            background: linear-gradient(180deg, rgba(169, 230, 213, .95), rgba(233, 204, 204, .95));
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow:
+                inset 0 0 0 3px #f1f7ff,
+                0 12px 30px rgba(0, 0, 0, .12);
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #444;
+        }
+
+        textarea {
+            width: 100%;
+            height: 220px;
+            resize: vertical;
+            border: 3px solid #bfe8ff;
+            border-radius: 18px;
+            padding: 14px;
+            font-size: 1rem;
+            outline: none;
+            background: #fffefc;
+        }
+
+        textarea:focus,
+        select:focus {
+            border-color: #ff92c2;
+            box-shadow: 0 0 0 5px rgba(255, 146, 194, 0.18);
+            outline: none;
+        }
+
+        select {
+            width: 100%;
+            border: 3px solid #bfe8ff;
+            border-radius: 14px;
+            padding: 12px;
+            font-size: 1rem;
+            background: #fffefc;
+        }
+
+        .settings-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 18px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .15s ease;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, .12);
+        }
+
+        button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, .2);
+        }
+
+        button:active {
+            transform: scale(.98);
+        }
+
+        .btn-build {
+            background: linear-gradient(135deg, #6dd5ff, #5d7bff);
+            color: white;
+        }
+
+        .btn-spin {
+            background: linear-gradient(135deg, #ffb347, #ff5e7e);
+            color: white;
+        }
+
+        .btn-pairs {
+            background: linear-gradient(135deg, #8ee3ff, #31c6ff);
+            color: white;
+        }
+
+        .btn-group {
+            background: linear-gradient(135deg, #9be15d, #00c9a7);
+            color: white;
+        }
+
+        .btn-clear {
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            color: #5a3500;
+        }
+
+        .small-note {
+            font-size: .92rem;
+            color: #666;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        .wheel-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100%;
+        }
+
+        .wheel-wrap {
+            position: relative;
+            width: 520px;
+            max-width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        .wheel-wrap.spinning-glow canvas {
+            box-shadow:
+                0 0 25px rgba(255, 255, 255, .9),
+                0 0 45px rgba(0, 242, 254, .8),
+                0 0 65px rgba(255, 79, 135, .55);
+        }
+
+        .pointer {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 24px solid transparent;
+            border-right: 24px solid transparent;
+            border-bottom: 44px solid #ff3366;
+            z-index: 10;
+            filter: drop-shadow(0 4px 2px rgba(0, 0, 0, .18));
+        }
+
+        .pointer::after {
+            content: "";
+            position: absolute;
+            top: 24px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: #b4eade;
+            border-radius: 50%;
+            border: 4px solid #ff3366;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #c88e8e;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, .14);
+            transition: box-shadow .25s ease;
+        }
+
+        .center-dot {
+            position: absolute;
+            width: 84px;
+            height: 84px;
+            background: radial-gradient(circle, #b1f5f6 0%, #ffe7f1 70%, #ffc1d8 100%);
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #ff4f87;
+            text-align: center;
+            z-index: 5;
+            font-size: .95rem;
+            pointer-events: none;
+        }
+
+        .spin-chant {
+            margin-top: 14px;
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: #ff4f87;
+            display: none;
+            animation: bounceText .6s infinite alternate;
+            text-shadow: 1px 1px 0 #fff;
+            text-align: center;
+        }
+
+        @keyframes bounceText {
+            from {
+                transform: translateY(0px) scale(1);
+            }
+
+            to {
+                transform: translateY(-8px) scale(1.08);
+            }
+        }
+
+        .result-box {
+            margin-top: 18px;
+            min-height: 72px;
+            width: min(680px, 100%);
+            background: linear-gradient(135deg, #fff8c5, #ffe2f0);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 14px 18px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #7a2957;
+            box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .7);
+        }
+
+        .name-count {
+            margin-top: 10px;
+            font-size: .98rem;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .output {
+            margin-top: 18px;
+            width: 100%;
+            max-width: 860px;
+        }
+
+        .rank-list,
+        .group-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .rank-item {
+            background: linear-gradient(135deg, #fff6a8, #ffd9ec);
+            border-radius: 16px;
+            padding: 12px 16px;
+            font-weight: 800;
+            color: #56384d;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, .08);
+            text-align: left;
+            font-size: 1.05rem;
+        }
+
+        .group-card {
+            background: linear-gradient(135deg, #dff9ff, #f7e8ff);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, .08);
+            text-align: left;
+        }
+
+        .group-title {
+            font-size: 1.2rem;
+            color: #5b45d6;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+
+        .group-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .member-pill {
+            background: white;
+            border: 2px solid #d7c8ff;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 700;
+            color: #4a4a4a;
+        }
+
+        .mode-badge {
+            display: inline-block;
+            margin-top: 12px;
+            background: #fff;
+            border: 2px dashed #ff9bc3;
+            color: #ff4f87;
+            font-weight: 900;
+            border-radius: 999px;
+            padding: 8px 14px;
+        }
+
+        .quick-spin {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 50;
+            border: 3px solid rgba(255, 255, 255, .9);
+            background: linear-gradient(135deg, #ff2f92, #ff9f1c);
+            color: white;
+            box-shadow:
+                0 14px 30px rgba(0, 0, 0, .25),
+                0 0 25px rgba(255, 79, 135, .65);
+            animation: quickPulse 1.8s ease-in-out infinite;
+        }
+
+        .quick-spin2 {
+            /* position: center; */
+            margin-top: 12px;
+            left: 22px;
+            bottom: 22px;
+            z-index: 50;
+            border: 3px solid rgba(255, 255, 255, .9);
+            background: linear-gradient(135deg, #ff2f92, #ff9f1c);
+            color: white;
+            box-shadow:
+                0 14px 30px rgba(0, 0, 0, .25),
+                0 0 25px rgba(255, 79, 135, .65);
+            animation: quickPulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes quickPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.06);
+            }
+        }
+
+        .confetti-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 16px;
+            border-radius: 4px;
+            animation: confettiFall 1.5s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-30px) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(540deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 950px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .wheel-wrap {
+                width: 100%;
+                max-width: 430px;
+            }
+
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .game-card {
+                min-height: 96px;
+            }
+
+            .game-home h2 {
+                font-size: 1.55rem;
+            }
+
+            .stats-strip {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .bot-hero {
+                min-height: 390px;
+            }
+
+            .title {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                font-size: .9rem;
+            }
+
+            .hero-badges {
+                top: 88px;
+            }
+
+            .bot-scene {
+                inset: 145px 0 0;
+            }
+
+            .bot {
+                transform: scale(.82);
+            }
+
+            .screen-one {
+                left: 4%;
+                width: 105px;
+                height: 72px;
+            }
+
+            .screen-two {
+                right: 4%;
+                width: 105px;
+                height: 72px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 10px;
+            }
+
+            .app {
+                padding: 14px;
+                border-radius: 22px;
+            }
+
+            .title {
+                font-size: 1.75rem;
+                letter-spacing: 2px;
+            }
+
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-card {
+                min-height: 86px;
+            }
+
+            .btn-row button {
+                width: 100%;
+            }
+
+            .quick-spin {
+                right: 12px;
+                bottom: 12px;
+                padding: 11px 14px;
+            }
+
+            .quick-spin2 {
+                left: 12px;
+                bottom: 12px;
+                padding: 11px 14px;
+            }
+        }
+
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: -4px 0 26px;
+        }
+
+        .stat-card {
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 900;
+            color: #ffffff;
+            background: rgba(255, 255, 255, .18);
+            border: 2px solid rgba(255, 255, 255, .55);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, .12);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 1.6rem;
+            color: #fff176;
+            text-shadow: 0 0 14px rgba(255, 255, 255, .7);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="confetti-layer" id="confettiLayer"></div>
+
+    <button class="quick-spin" id="quickSpinBtn">⚡ Quick Spin</button>
+
+    <div class="app">
+
+        <section class="bot-hero">
+            <div class="tech-lines"></div>
+
+            <div class="bot-text">
+                <h1 class="title">GAME ZONE</h1>
+                <p class="subtitle">Choose a game, spin the wheel, make groups, or play something fun!</p>
+            </div>
+
+            <!-- <div class="hero-badges">
+        <div class="hero-badge">🎮 7 Mini Games</div>
+        <div class="hero-badge">🎡 Smart Picker</div>
+        <div class="hero-badge">✨ Premium Fun Mode</div>
+      </div> -->
+
+            <div class="bot-scene">
+                <div class="bot" id="bot">
+                    <div class="bot-head">
+                        <div class="bot-face">
+                            <span class="eye left-eye"></span>
+                            <span class="eye right-eye"></span>
+                        </div>
+                        <div class="ear left-ear"></div>
+                        <div class="ear right-ear"></div>
+                    </div>
+
+                    <div class="bot-body">
+                        <div class="bot-glow"></div>
+                    </div>
+                </div>
+
+                <div class="holo-screen screen-one">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="holo-screen screen-two">
+                    <div class="mini-map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="stats-strip">
+            <div class="stat-card">
+                <strong id="gamesCount">7</strong>
+                Games Ready
+            </div>
+
+            <div class="stat-card">
+                <strong id="spinCount">0</strong>
+                Spins Today
+            </div>
+
+            <div class="stat-card">
+                <strong id="namesStat">0</strong>
+                Names Loaded
+            </div>
+        </section> -->
+
+        <section class="game-home">
+            <div class="game-home-content">
+                <!-- <h2>Pick Your Game</h2> -->
+
+                <!-- Your section -->
+                <section id="pick-your-game">
+                    <h2>Pick Your Game</h2>
+                    <!-- content -->
+                </section>
+
+
+                <p> Choose And Tap Your Favorite One </p>
+
+                <div class="game-grid">
+                    <a class="game-card" href="numberpath.html">
+                        🔢
+                        <span>Number Path</span>
+                    </a>
+
+                    <a class="game-card" href="box-puzzlen.html">
+                        🧩
+                        <span>Box Puzzle</span>
+                    </a>
+
+                    <a class="game-card" href="word_game.html">
+                        🔤
+                        <span>Word Game</span>
+                    </a>
+
+                    <a class="game-card" href="math_monopoly.html">
+                        💰
+                        <span>Math Monopoly</span>
+                    </a>
+
+                    <a class="game-card" href="copsandrobber.html">
+                        🚓
+                        <span>Cops & Robber</span>
+                    </a>
+
+                    <a class="game-card" href="hangman.html">
+                        🎯
+                        <span>Hangman</span>
+                    </a>
+
+                    <a class="game-card" href="dash_time.html">
+                        ⏰
+                        <span>Dash Time</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="layout">
+            <!-- <button class="quick-spin2" id="quickSpin2Btn">⚡ Quick Spin2</button> -->
+            <div class="panel">
+                <h2>🎡 Wheel Picker</h2>
+
+                <label for="namesInput">One name per line or separated by commas</label>
+                <textarea id="namesInput" placeholder="Example:
+Ava
+Noah
+Liam
+Mia
+Olivia
+Lucas"></textarea>
+
+
+
+                <div class="settings-grid">
+                    <div>
+                        <label for="groupSize">Custom group size</label>
+                        <select id="groupSize">
+                            <option value="2">2 names per group</option>
+                            <option value="3">3 names per group</option>
+                            <option value="4" selected>4 names per group</option>
+                            <option value="5">5 names per group</option>
+                            <option value="6">6 names per group</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn-build" id="buildBtn">Build Wheel</button>
+                    <button class="btn-spin" id="spinRankBtn">Spin & Rank All</button>
+                    <button class="btn-pairs" id="pairsBtn">Make 2-People Groups</button>
+                    <button class="btn-group" id="groupBtn">Make Custom Groups</button>
+                    <button class="btn-clear" id="clearBtn">Clear</button>
+                </div>
+
+                <div class="name-count" id="nameCount"></div>
+                <div class="mode-badge" id="modeBadge">Mode: Ready</div>
+
+
+
+                <div class="small-note">
+                    Ideas:<br>
+                    • Build Wheel = You Can Build The Wheel First !!! <br>
+                    • Spin & Rank All = Full Random Positions<br>
+                    • Make 2-People Groups = Random Pairs<br>
+                    • Make Custom Groups = Use Dropdown size<br>
+                    <!-- • Example: 12 names + pair mode = 6 groups of 2 -->
+                </div>
+                <button class="quick-spin2" id="quickSpin2Btn">⚡ Pick Game </button>
+
+
+            </div>
+
+
+
+            <div class="panel wheel-area">
+                <div class="wheel-wrap" id="wheelWrap">
+                    <div class="pointer"></div>
+                    <canvas id="wheelCanvas" width="520" height="520"></canvas>
+                    <div class="center-dot">FUN</div>
+                </div>
+
+                <div id="spinChant" class="spin-chant">🎶 Iny meeny miny mo...</div>
+
+                <div class="result-box" id="resultBox">Add Names And Choose An Action.</div>
+
+                <div class="output" id="outputArea"></div>
+            </div>
+        </div>
+
+
+        <section class="stats-strip">
+            <div class="stat-card">
+                <strong id="gamesCount">7</strong>
+                Games Ready
+            </div>
+
+            <div class="stat-card">
+                <strong id="spinCount">0</strong>
+                Spins Today
+            </div>
+
+            <div class="stat-card">
+                <strong id="namesStat">0</strong>
+                Names Loaded
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("wheelCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const namesInput = document.getElementById("namesInput");
+        const buildBtn = document.getElementById("buildBtn");
+        const spinRankBtn = document.getElementById("spinRankBtn");
+        const pairsBtn = document.getElementById("pairsBtn");
+        const groupBtn = document.getElementById("groupBtn");
+        const clearBtn = document.getElementById("clearBtn");
+        const resultBox = document.getElementById("resultBox");
+        const nameCount = document.getElementById("nameCount");
+        const outputArea = document.getElementById("outputArea");
+        const groupSizeSelect = document.getElementById("groupSize");
+        const modeBadge = document.getElementById("modeBadge");
+        const spinChant = document.getElementById("spinChant");
+
+        const wheelWrap = document.getElementById("wheelWrap");
+        const quickSpinBtn = document.getElementById("quickSpinBtn");
+        const quickSpin2Btn = document.getElementById("quickSpin2Btn");
+        const confettiLayer = document.getElementById("confettiLayer");
+        const spinCount = document.getElementById("spinCount");
+        const namesStat = document.getElementById("namesStat");
+        const bot = document.getElementById("bot");
+
+        let names = [];
+        let currentAngle = 0;
+        let isSpinning = false;
+        let animationFrameId = null;
+        let pendingAction = null;
+        let totalSpins = 0;
+
+        const colors = [
+            "#ff7eb9", "#7afcff", "#feff9c", "#fff740",
+            "#baffc9", "#ffb3ba", "#a0c4ff", "#ffd6a5",
+            "#caffbf", "#9bf6ff", "#fbc4ff", "#fdffb6",
+            "#bdb2ff", "#ffc6ff", "#caffbf", "#f1c0e8"
+        ];
+
+        function scrollToResultOnMobile() {
+            // if (window.innerWidth < 768) {
+                const section = document.getElementById("outputArea");
+                section.scrollIntoView({ behavior: "smooth", block: "start" });
+            // }
+        }
+
+        function getNamesFromInput() {
+            return namesInput.value
+                .split(/[\n,]+/)
+                .map(name => name.trim())
+                .filter(name => name.length > 0);
+        }
+
+        function updateNames() {
+            names = getNamesFromInput();
+            // nameCount.textContent = `Names loaded: ${names.length}`;
+            namesStat.textContent = names.length;
+            return names;
+        }
+
+        namesInput.addEventListener("input", updateNames);
+
+        function shuffleArray(arr) {
+            const copy = [...arr];
+
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+
+            return copy;
+        }
+
+        function normalizeAngle(angle) {
+            angle = angle % (Math.PI * 2);
+            return angle < 0 ? angle + Math.PI * 2 : angle;
+        }
+
+        function getPointerIndex() {
+            if (names.length === 0) return -1;
+
+            const arc = (Math.PI * 2) / names.length;
+            const pointerAngle = Math.PI * 1.5;
+
+            const angleAtPointer = normalizeAngle(pointerAngle - currentAngle);
+            return Math.floor(angleAtPointer / arc);
+        }
+
+        function getRankingFromWheelPointer() {
+            const pointerIndex = getPointerIndex();
+
+            if (pointerIndex < 0) {
+                return [];
+            }
+
+            const ranking = [];
+
+            for (let i = 0; i < names.length; i++) {
+                ranking.push(names[(pointerIndex + i) % names.length]);
+            }
+
+            return ranking;
+        }
+
+        function fitText(text, maxWidth, initialSize) {
+            let size = initialSize;
+
+            ctx.font = `bold ${size}px Trebuchet MS`;
+
+            while (ctx.measureText(text).width > maxWidth && size > 10) {
+                size--;
+                ctx.font = `bold ${size}px Trebuchet MS`;
+            }
+
+            return size;
+        }
+
+        function drawWheel() {
+            const w = canvas.width;
+            const h = canvas.height;
+            const cx = w / 2;
+            const cy = h / 2;
+            const radius = Math.min(cx, cy) - 10;
+
+            ctx.clearRect(0, 0, w, h);
+
+            if (names.length === 0) {
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+                ctx.fillStyle = "#f5faff";
+                ctx.fill();
+                ctx.lineWidth = 8;
+                ctx.strokeStyle = "#d7ecff";
+                ctx.stroke();
+
+                ctx.fillStyle = "#888";
+                ctx.font = "bold 28px Trebuchet MS";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("No Names Yet", cx, cy - 10);
+
+                ctx.font = "18px Trebuchet MS";
+                ctx.fillText("Add names to build your wheel", cx, cy + 24);
+                return;
+            }
+
+            const arc = (Math.PI * 2) / names.length;
+
+            for (let i = 0; i < names.length; i++) {
+                const startAngle = currentAngle + i * arc;
+                const endAngle = startAngle + arc;
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.arc(cx, cy, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.fill();
+
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = "#ffffff";
+                ctx.stroke();
+
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(startAngle + arc / 2);
+
+                const text = names[i];
+                const textRadius = radius * 0.63;
+                const maxTextWidth = radius * 0.35;
+
+                let fontSize = 20;
+
+                if (names.length > 20) {
+                    fontSize = 12;
+                } else if (names.length > 12) {
+                    fontSize = 15;
+                } else if (names.length > 8) {
+                    fontSize = 17;
+                }
+
+                fontSize = fitText(text, maxTextWidth, fontSize);
+
+                ctx.fillStyle = "#333";
+                ctx.font = `bold ${fontSize}px Trebuchet MS`;
+                ctx.textAlign = "right";
+                ctx.textBaseline = "middle";
+                ctx.fillText(text, textRadius, 0);
+
+                ctx.restore();
+            }
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = "#ffffff";
+            ctx.stroke();
+        }
+
+        function buildWheel() {
+            updateNames();
+
+            if (names.length < 2) {
+                alert("Please enter at least 2 names.");
+                return;
+            }
+
+            resultBox.textContent = "Wheel is ready. Choose an action.";
+            outputArea.innerHTML = "";
+            modeBadge.textContent = "Mode: Ready";
+            drawWheel();
+        }
+
+        function getOrdinal(n) {
+            if (n % 100 >= 11 && n % 100 <= 13) return n + "th";
+
+            switch (n % 10) {
+                case 1:
+                    return n + "st";
+                case 2:
+                    return n + "nd";
+                case 3:
+                    return n + "rd";
+                default:
+                    return n + "th";
+            }
+        }
+
+        function updateSpinCounter() {
+            totalSpins++;
+            spinCount.textContent = totalSpins;
+        }
+
+        function spinThenRun(actionName, callback) {
+            if (isSpinning) return;
+
+            updateNames();
+
+            if (names.length < 2) {
+                alert("Please enter at least 2 names.");
+                return;
+            }
+
+            isSpinning = true;
+            pendingAction = callback;
+            modeBadge.textContent = `Mode: ${actionName}`;
+
+            if (actionName === "Ranking") {
+                resultBox.textContent = "Spinning... then making full random positions 🎡";
+            } else if (actionName === "Pairs") {
+                resultBox.textContent = "Spinning... then making 2-people groups 🎡";
+            } else {
+                resultBox.textContent = "Spinning... then making custom groups 🎡";
+            }
+
+            spinChant.style.display = "block";
+            wheelWrap.classList.add("spinning-glow");
+            updateSpinCounter();
+
+            const extraSpins = 5 + Math.random() * 4;
+            const randomStop = Math.random() * Math.PI * 2;
+            const startAngle = currentAngle;
+            const targetAngle = currentAngle + extraSpins * Math.PI * 2 + randomStop;
+            const duration = 4200;
+            const startTime = performance.now();
+
+            function animate(now) {
+                const elapsed = now - startTime;
+                const t = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - t, 4);
+
+                currentAngle = startAngle + (targetAngle - startAngle) * easeOut;
+                drawWheel();
+
+                if (t < 1) {
+                    animationFrameId = requestAnimationFrame(animate);
+                } else {
+                    currentAngle = normalizeAngle(currentAngle);
+                    drawWheel();
+                    isSpinning = false;
+                    spinChant.style.display = "none";
+                    wheelWrap.classList.remove("spinning-glow");
+
+                    if (pendingAction) {
+                        pendingAction();
+                    }
+
+                    launchConfetti();
+                }
+            }
+
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        function showRanking() {
+            const finalRanking = getRankingFromWheelPointer();
+            const medals = ["🥇", "🥈", "🥉"];
+
+            let html = '<div class="rank-list">';
+
+            finalRanking.forEach((name, index) => {
+                const rankNum = index + 1;
+
+                const rankLabel = index < 3
+                    ? medals[index] + " " + getOrdinal(rankNum)
+                    : "⭐ " + getOrdinal(rankNum);
+
+                html += `
+      <div class="rank-item">
+        ${rankLabel} — ${escapeHtml(name)}
+      </div>
+    `;
+            });
+
+            html += "</div>";
+            outputArea.innerHTML = html;
+
+            if (finalRanking.length > 0) {
+                resultBox.textContent = `Pointer picked ${finalRanking[0]} as 1st!`;
+            } else {
+                resultBox.textContent = "Here is the full random order for all names!";
+            }
+        }
+
+        function makeGroupsBySize(size, labelText) {
+            const shuffled = shuffleArray(names);
+            const groups = [];
+
+            for (let i = 0; i < shuffled.length; i += size) {
+                groups.push(shuffled.slice(i, i + size));
+            }
+
+            let html = '<div class="group-list">';
+
+            groups.forEach((group, index) => {
+                html += `
+      <div class="group-card">
+        <div class="group-title">🎈 ${labelText} ${index + 1}</div>
+        <div class="group-members">
+          ${group.map(name => `<div class="member-pill">${escapeHtml(name)}</div>`).join("")}
+        </div>
+      </div>
+    `;
+            });
+
+            html += "</div>";
+            outputArea.innerHTML = html;
+
+            resultBox.textContent =
+                `Done! ${groups.length} ${labelText.toLowerCase()}${groups.length > 1 ? "s" : ""} created.`;
+        }
+
+        function makePairs() {
+            makeGroupsBySize(2, "Pair");
+        }
+
+        function makeCustomGroups() {
+            const size = parseInt(groupSizeSelect.value, 10);
+            makeGroupsBySize(size, "Group");
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement("div");
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function clearAll() {
+            cancelAnimationFrame(animationFrameId);
+
+            names = [];
+            currentAngle = 0;
+            isSpinning = false;
+            pendingAction = null;
+
+            namesInput.value = "";
+            nameCount.textContent = "";
+            namesStat.textContent = "0";
+            modeBadge.textContent = "Mode: Ready";
+            resultBox.textContent = "Add names and choose an action.";
+            outputArea.innerHTML = "";
+            spinChant.style.display = "none";
+            wheelWrap.classList.remove("spinning-glow");
+
+            drawWheel();
+        }
+
+        function launchConfetti() {
+            const confettiColors = [
+                "#ff2f92",
+                "#fff176",
+                "#00f2fe",
+                "#7f5cff",
+                "#00ff99",
+                "#ff9f1c"
+            ];
+
+            for (let i = 0; i < 70; i++) {
+                const piece = document.createElement("span");
+                piece.className = "confetti-piece";
+                piece.style.left = Math.random() * 100 + "vw";
+                piece.style.top = "-20px";
+                piece.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                piece.style.animationDelay = Math.random() * 0.35 + "s";
+                piece.style.animationDuration = 1.1 + Math.random() * 0.9 + "s";
+                piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                confettiLayer.appendChild(piece);
+
+                setTimeout(() => {
+                    piece.remove();
+                }, 2300);
+            }
+        }
+
+        function botTiltEffect(event) {
+            const rect = bot.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            const rotateY = ((x / rect.width) - 0.5) * 20;
+            const rotateX = -((y / rect.height) - 0.5) * 12;
+
+            bot.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
+        function resetBotTilt() {
+            bot.style.transform = "";
+        }
+
+        bot.addEventListener("mousemove", botTiltEffect);
+        bot.addEventListener("mouseleave", resetBotTilt);
+
+        // buildBtn.addEventListener("click", buildWheel);
+
+        // spinRankBtn.addEventListener("click", () => {
+        //     spinThenRun("Ranking", showRanking);
+        // });
+
+        // pairsBtn.addEventListener("click", () => {
+        //     spinThenRun("Pairs", makePairs);
+        // });
+
+        // groupBtn.addEventListener("click", () => {
+        //     spinThenRun("Grouping", makeCustomGroups);
+        // });
+
+        buildBtn.addEventListener("click", () => {
+            buildWheel();
+            if(window.innerWidth < 768){
+                scrollToResultOnMobile();
+            }
+            
+        });
+
+        spinRankBtn.addEventListener("click", () => {
+            spinThenRun("Ranking", () => {
+                showRanking();
+                scrollToResultOnMobile();
+            });
+        });
+
+        pairsBtn.addEventListener("click", () => {
+            spinThenRun("Pairs", () => {
+                makePairs();
+                scrollToResultOnMobile();
+            });
+        });
+
+        groupBtn.addEventListener("click", () => {
+            spinThenRun("Grouping", () => {
+                makeCustomGroups();
+                scrollToResultOnMobile();
+            });
+        });
+
+        clearBtn.addEventListener("click", clearAll);
+
+        /* Updated Quick Spin behavior */
+        quickSpinBtn.addEventListener("click", () => {
+            const wheelSection = document.querySelector(".layout");
+            const rect = wheelSection.getBoundingClientRect();
+
+            const userIsInWheelSection =
+                rect.top < window.innerHeight * 0.45 &&
+                rect.bottom > window.innerHeight * 0.45;
+
+            if (!userIsInWheelSection) {
+                wheelSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+                return;
+            }
+
+            spinThenRun("Ranking", showRanking);
+        });
+
+        document.getElementById('quickSpin2Btn').addEventListener('click', function () {
+            const section = document.getElementById('pick-your-game');
+            section.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        drawWheel();
+        updateNames();
+    </script>
+</body>
+
+</html>
